@@ -130,17 +130,17 @@ function productStockValue($id)
 
 function projectName()
 {
-    return 'KHAN PETROLEUM, QUETTA';
+    return 'JAMIL LUBRICANTS & OIL';
 }
 
 function projectNameShort()
 {
-    return 'KP';
+    return 'JLO';
 }
 
 function addressLineOne()
 {
-    return 'Mashriqi Bypass';
+    return 'Quetta';
 }
 
 function addressLineTwo()

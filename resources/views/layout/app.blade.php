@@ -13,7 +13,7 @@
     <meta content="la-themes" name="author">
     <link href="{{ asset('assets/images/logo/favicon.png') }}" rel="icon" type="image/x-icon">
     <link href="{{ asset('assets/images/logo/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
-    <title>Smart Gas Station by Nexgen Pakistan</title>
+    <title>Fuel Management by Nexgen Pakistan</title>
 
     <!--animation-css-->
     <link href="{{ asset('assets/vendor/animation/animate.min.css') }}" rel="stylesheet">
@@ -86,7 +86,7 @@
                                 <span class="cursor-pointer main-side-toggle">
                                     <i class="ti ti-align-justified f-s-22 text-secondary"></i>
                                 </span>
-                                <h4 class="txt-ellipsis-2">Smart Gas Station</h4>
+                                <h4 class="txt-ellipsis-2">Fuel Management System</h4>
                             </div>
                         </div>
                         <div class="col-6 head-right">

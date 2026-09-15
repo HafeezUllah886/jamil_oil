@@ -28,13 +28,33 @@
         }
 
         /* Card color accents */
-        .card-accent-primary::before { background: linear-gradient(180deg, #5c60f5, #888cf8); }
-        .card-accent-success::before { background: linear-gradient(180deg, #2cc76f, #5ddc92); }
-        .card-accent-warning::before { background: linear-gradient(180deg, #ff9f43, #ffbd80); }
-        .card-accent-info::before { background: linear-gradient(180deg, #00cfe8, #55e0f0); }
-        .card-accent-secondary::before { background: linear-gradient(180deg, #82868b, #aeb2b7); }
-        .card-accent-purple::before { background: linear-gradient(180deg, #a065f9, #c7a4fc); }
-        .card-accent-danger::before { background: linear-gradient(180deg, #ea5455, #f18c8e); }
+        .card-accent-primary::before {
+            background: linear-gradient(180deg, #5c60f5, #888cf8);
+        }
+
+        .card-accent-success::before {
+            background: linear-gradient(180deg, #2cc76f, #5ddc92);
+        }
+
+        .card-accent-warning::before {
+            background: linear-gradient(180deg, #ff9f43, #ffbd80);
+        }
+
+        .card-accent-info::before {
+            background: linear-gradient(180deg, #00cfe8, #55e0f0);
+        }
+
+        .card-accent-secondary::before {
+            background: linear-gradient(180deg, #82868b, #aeb2b7);
+        }
+
+        .card-accent-purple::before {
+            background: linear-gradient(180deg, #a065f9, #c7a4fc);
+        }
+
+        .card-accent-danger::before {
+            background: linear-gradient(180deg, #ea5455, #f18c8e);
+        }
 
         .icon-box {
             width: 48px;
@@ -47,13 +67,40 @@
         }
 
         /* Icon background opacity classes */
-        .icon-bg-primary { background-color: rgba(92, 96, 245, 0.1); color: #5c60f5; }
-        .icon-bg-success { background-color: rgba(44, 199, 111, 0.1); color: #2cc76f; }
-        .icon-bg-warning { background-color: rgba(255, 159, 67, 0.1); color: #ff9f43; }
-        .icon-bg-info { background-color: rgba(0, 207, 232, 0.1); color: #00cfe8; }
-        .icon-bg-secondary { background-color: rgba(130, 134, 139, 0.1); color: #82868b; }
-        .icon-bg-purple { background-color: rgba(160, 101, 249, 0.1); color: #a065f9; }
-        .icon-bg-danger { background-color: rgba(234, 84, 85, 0.1); color: #ea5455; }
+        .icon-bg-primary {
+            background-color: rgba(92, 96, 245, 0.1);
+            color: #5c60f5;
+        }
+
+        .icon-bg-success {
+            background-color: rgba(44, 199, 111, 0.1);
+            color: #2cc76f;
+        }
+
+        .icon-bg-warning {
+            background-color: rgba(255, 159, 67, 0.1);
+            color: #ff9f43;
+        }
+
+        .icon-bg-info {
+            background-color: rgba(0, 207, 232, 0.1);
+            color: #00cfe8;
+        }
+
+        .icon-bg-secondary {
+            background-color: rgba(130, 134, 139, 0.1);
+            color: #82868b;
+        }
+
+        .icon-bg-purple {
+            background-color: rgba(160, 101, 249, 0.1);
+            color: #a065f9;
+        }
+
+        .icon-bg-danger {
+            background-color: rgba(234, 84, 85, 0.1);
+            color: #ea5455;
+        }
 
         .metric-title {
             font-size: 13px;
@@ -95,7 +142,7 @@
 
 @section('content')
     <!-- Dashboard Header -->
-    <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
+    <div class="d-flex align-items-center justify-content-between mb-2 mt-2">
         <div>
             <h3 class="mb-1 text-dark f-w-700">Business Dashboard</h3>
             <p class="text-secondary mb-0">Overview of fuel sales, purchases, and cash flows for {{ projectName() }}</p>
@@ -106,7 +153,7 @@
     </div>
 
     <!-- Row 1: Primary Month Metrics -->
-    <div class="row g-4 mb-4">
+    <div class="row g-2 mb-2">
         <!-- Month Sales -->
         <div class="col-xl-3 col-md-6 col-sm-12">
             <div class="card metric-card card-accent-primary">
@@ -115,9 +162,7 @@
                         <div class="metric-title">Sales This Month</div>
                         <div class="metric-value">Rs. {{ number_format($currentMonthSales, 2) }}</div>
                     </div>
-                    <div class="icon-box icon-bg-primary">
-                        <i class="ti ti-chart-bar"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -130,9 +175,6 @@
                         <div class="metric-title">Expenses This Month</div>
                         <div class="metric-value">Rs. {{ number_format($currentMonthExpenses, 2) }}</div>
                     </div>
-                    <div class="icon-box icon-bg-warning">
-                        <i class="ti ti-receipt"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -143,12 +185,9 @@
                 <div class="card-body d-flex align-items-center justify-content-between p-4">
                     <div>
                         <div class="metric-title">Net Profit This Month</div>
-                        <div class="metric-value @if($currentMonthProfit < 0) text-danger @endif">
+                        <div class="metric-value @if ($currentMonthProfit < 0) text-danger @endif">
                             Rs. {{ number_format($currentMonthProfit, 2) }}
                         </div>
-                    </div>
-                    <div class="icon-box icon-bg-success">
-                        <i class="ti ti-piggy-bank"></i>
                     </div>
                 </div>
             </div>
@@ -162,16 +201,13 @@
                         <div class="metric-title">Cash & Bank Balance</div>
                         <div class="metric-value">Rs. {{ number_format($businessBalance, 2) }}</div>
                     </div>
-                    <div class="icon-box icon-bg-info">
-                        <i class="ti ti-building-bank"></i>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Row 2: Secondary / Stock & Balances Metrics -->
-    <div class="row g-4 mb-4">
+    <div class="row g-2 mb-2">
         <!-- Stock Value -->
         <div class="col-md-4 col-sm-12">
             <div class="card metric-card card-accent-secondary">
@@ -180,9 +216,7 @@
                         <div class="metric-title">Current Stock Value</div>
                         <div class="metric-value">Rs. {{ number_format($stockVal, 2) }}</div>
                     </div>
-                    <div class="icon-box icon-bg-secondary">
-                        <i class="ti ti-box"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -194,9 +228,6 @@
                     <div>
                         <div class="metric-title">Customer Receivables</div>
                         <div class="metric-value">Rs. {{ number_format($customerReceivables, 2) }}</div>
-                    </div>
-                    <div class="icon-box icon-bg-purple">
-                        <i class="ti ti-users"></i>
                     </div>
                 </div>
             </div>
@@ -210,9 +241,7 @@
                         <div class="metric-title">Supplier Payables</div>
                         <div class="metric-value">Rs. {{ number_format($supplierPayables, 2) }}</div>
                     </div>
-                    <div class="icon-box icon-bg-danger">
-                        <i class="ti ti-truck-delivery"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -250,7 +279,7 @@
 
 @section('page-js')
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // Data passed from DashboardController
             const categories = @json($months);
             const salesData = @json($salesData);
@@ -259,8 +288,7 @@
 
             // 1. Sales & Expenses Chart Options
             const saleExpenseOptions = {
-                series: [
-                    {
+                series: [{
                         name: 'Sales',
                         data: salesData
                     },
@@ -272,7 +300,9 @@
                 chart: {
                     type: 'bar',
                     height: 320,
-                    toolbar: { show: false },
+                    toolbar: {
+                        show: false
+                    },
                     fontFamily: 'Lexend Deca, sans-serif'
                 },
                 plotOptions: {
@@ -293,8 +323,12 @@
                 },
                 xaxis: {
                     categories: categories,
-                    axisBorder: { show: false },
-                    axisTicks: { show: false },
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
                     labels: {
                         style: {
                             colors: '#6c757d',
@@ -311,7 +345,7 @@
                         }
                     },
                     labels: {
-                        formatter: function (val) {
+                        formatter: function(val) {
                             return val >= 1000 ? (val / 1000) + 'k' : val;
                         },
                         style: {
@@ -338,7 +372,7 @@
                 },
                 tooltip: {
                     y: {
-                        formatter: function (val) {
+                        formatter: function(val) {
                             return "Rs. " + val.toLocaleString();
                         }
                     }
@@ -347,7 +381,7 @@
 
             // Render Sales & Expenses Chart
             const saleExpenseChart = new ApexCharts(
-                document.querySelector("#sale-expense-chart-container"), 
+                document.querySelector("#sale-expense-chart-container"),
                 saleExpenseOptions
             );
             saleExpenseChart.render();
@@ -362,7 +396,9 @@
                 chart: {
                     type: 'area',
                     height: 320,
-                    toolbar: { show: false },
+                    toolbar: {
+                        show: false
+                    },
                     fontFamily: 'Lexend Deca, sans-serif'
                 },
                 dataLabels: {
@@ -384,8 +420,12 @@
                 },
                 xaxis: {
                     categories: categories,
-                    axisBorder: { show: false },
-                    axisTicks: { show: false },
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
                     labels: {
                         style: {
                             colors: '#6c757d',
@@ -395,7 +435,7 @@
                 },
                 yaxis: {
                     labels: {
-                        formatter: function (val) {
+                        formatter: function(val) {
                             return val >= 1000 ? (val / 1000) + 'k' : val;
                         },
                         style: {
@@ -411,7 +451,7 @@
                 },
                 tooltip: {
                     y: {
-                        formatter: function (val) {
+                        formatter: function(val) {
                             return "Rs. " + val.toLocaleString();
                         }
                     }
@@ -420,7 +460,7 @@
 
             // Render Profit Chart
             const profitChart = new ApexCharts(
-                document.querySelector("#profit-chart-container"), 
+                document.querySelector("#profit-chart-container"),
                 profitOptions
             );
             profitChart.render();
