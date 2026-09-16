@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card ">
                 <div class="card-header d-flex justify-content-between">
-                    <h5>Sales</h5>
+                    <h5>Demands</h5>
                     <button aria-controls="canvasEnd" class="btn btn-primary" data-bs-target="#canvasEnd"
                         data-bs-toggle="offcanvas" type="button">Filter</button>
                 </div>
@@ -16,18 +16,18 @@
                                     <th style="width: 10px;">#</th>
                                     <th class="text-start">Date</th>
                                     <th class="text-start">Customer</th>
-                                    <th class="text-end">Total Amount</th>
+                                    <th class="text-end">Total</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($sales as $key => $sale)
+                                @foreach ($demands as $key => $demand)
                                     <tr>
                                         <td class="text-dark" style="width: 10px;">{{ $key + 1 }}</td>
 
-                                        <td class="text-start">{{ date('d-m-Y', strtotime($sale->date)) }}</td>
-                                        <td class="text-start">{{ $sale->customer->title }}</td>
-                                        <td class="text-end">{{ number_format($sale->total) }}</td>
+                                        <td class="text-start">{{ date('d-m-Y', strtotime($demand->date)) }}</td>
+                                        <td class="text-start">{{ $demand->customer->title }}</td>
+                                        <td class="text-end">{{ number_format($demand->details->sum(function($d) { return $d->qty * $d->price; })) }}</td>
 
                                         <td class="text-center">
                                             <div class="dropdown">
@@ -37,14 +37,19 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
                                                     <li><a class="dropdown-item"
-                                                            href="{{ route('sale.show', $sale->id) }}"><i
+                                                            href="{{ route('demand.show', $demand->id) }}"><i
                                                                 class="ti ti-eye me-2 text-secondary"></i> View</a></li>
                                                     <li><a class="dropdown-item"
-                                                            href="{{ route('sale.edit', $sale->id) }}"><i
+                                                            href="{{ route('demand.edit', $demand->id) }}"><i
                                                                 class="ti ti-edit me-2 text-secondary"></i> Edit</a></li>
+                                                    @if(in_array($demand->status, ['Pending', 'In Progress']))
+                                                    <li><a class="dropdown-item text-info"
+                                                            href="{{ route('demand.deliver', $demand->id) }}"><i
+                                                                class="ti ti-truck me-2 text-info"></i> Deliver</a></li>
+                                                    @endif
                                                     <li>
                                                         <a class="dropdown-item text-danger"
-                                                            href="{{ route('sales.delete', $sale->id) }}"><i
+                                                            href="{{ route('demand.delete', $demand->id) }}"><i
                                                                 class="ti ti-trash me-2 text-danger"></i>
                                                             Delete</a>
                                                     </li>

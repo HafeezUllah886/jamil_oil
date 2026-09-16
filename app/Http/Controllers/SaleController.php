@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ConfirmPassword;
 use App\Models\accounts;
-use App\Models\attendants;
 use App\Models\products;
 use App\Models\sale;
 use App\Models\sale_details;
@@ -53,9 +52,8 @@ class SaleController extends Controller
         $products = products::orderby('name', 'asc')->get();
         $customers = accounts::active()->customer()->get();
         $accounts = accounts::active()->business()->get();
-        $attendants = attendants::active()->get();
 
-        return view('sale.create', compact('products', 'customers', 'accounts', 'attendants'));
+        return view('sale.create', compact('products', 'customers', 'accounts'));
     }
 
     /**
@@ -73,7 +71,6 @@ class SaleController extends Controller
             $sale = sale::create(
                 [
                     'customer_id' => $request->customer_id,
-                    'attendant_id' => $request->attendant,
                     'date' => $request->date,
                     'notes' => $request->notes,
                     'status' => $request->status,
@@ -159,9 +156,8 @@ class SaleController extends Controller
         $products = products::orderby('name', 'asc')->get();
         $customers = accounts::active()->customer()->get();
         $accounts = accounts::active()->business()->get();
-        $attendants = attendants::active()->get();
 
-        return view('sale.edit', compact('products', 'customers', 'accounts', 'sale', 'attendants'));
+        return view('sale.edit', compact('products', 'customers', 'accounts', 'sale'));
     }
 
     /**
@@ -187,7 +183,6 @@ class SaleController extends Controller
             $sale->update(
                 [
                     'customer_id' => $request->customer_id,
-                    'attendant_id' => $request->attendant,
                     'date' => $request->date,
                     'notes' => $request->notes,
                     'status' => $request->status,

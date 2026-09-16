@@ -79,19 +79,6 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="attendant">Attendant</label>
-                                    <select name="attendant" id="attendant" required class="select2 w-100">
-                                        <option value=""></option>
-                                        @foreach ($attendants as $attendant)
-                                            <option value="{{ $attendant->id }}"
-                                                {{ $attendant->id == $sale->attendant_id ? 'selected' : '' }}>
-                                                {{ $attendant->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
                                     <label for="date">Date</label>
                                     <input type="date" name="date" id="date" required
                                         value="{{ date('Y-m-d', strtotime($sale->date)) }}" class="form-control">

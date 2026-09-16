@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class sale extends Model
+class Demand extends Model
 {
-    use HasFactory;
-
     protected $guarded = [];
 
     public function customer()
@@ -16,14 +13,13 @@ class sale extends Model
         return $this->belongsTo(accounts::class, 'customer_id');
     }
 
-
     public function details()
     {
-        return $this->hasMany(sale_details::class, 'sale_id');
+        return $this->hasMany(DemandDetail::class, 'demand_id');
     }
 
-    public function payments()
+    public function deliveries()
     {
-        return $this->hasMany(salePayments::class, 'sale_id');
+        return $this->hasMany(DemandDelivery::class, 'demand_id');
     }
 }
