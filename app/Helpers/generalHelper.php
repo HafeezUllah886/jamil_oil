@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DemandDeliveryDetail;
 use App\Models\products;
 use App\Models\purchase_details;
 use App\Models\ref;
@@ -81,8 +82,21 @@ function avgSalePrice($from, $to, $id)
     $sales_amount = $sales->sum('amount');
     $sales_qty = $sales->sum('qty');
 
-    if ($sales_qty > 0) {
-        $sale_price = $sales_amount / $sales_qty;
+    $demandDeliveries = DemandDeliveryDetail::where('product_id', $id);
+    if ($from != 'all' && $to != 'all') {
+        $demandDeliveries->whereHas('delivery', function ($q) use ($from, $to) {
+            $q->whereBetween('date', [$from, $to]);
+        });
+    }
+
+    $demand_amount = $demandDeliveries->sum('amount');
+    $demand_qty = $demandDeliveries->sum('qty');
+
+    $total_amount = $sales_amount + $demand_amount;
+    $total_qty = $sales_qty + $demand_qty;
+
+    if ($total_qty > 0) {
+        $sale_price = $total_amount / $total_qty;
     } else {
         $sale_price = 0;
     }

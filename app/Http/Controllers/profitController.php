@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DemandDeliveryDetail;
 use App\Models\expenses;
 use App\Models\products;
 use App\Models\sale_details;
@@ -24,6 +25,11 @@ class profitController extends Controller
             $purchaseRate = avgPurchasePrice($from, $to, $product->id);
             $saleRate = avgSalePrice($from, $to, $product->id);
             $sold = sale_details::where('product_id', $product->id)->whereBetween('date', [$from, $to])->sum('qty');
+            $demand_sold = DemandDeliveryDetail::where('product_id', $product->id)->whereHas('delivery', function ($q) use ($from, $to) {
+                $q->whereBetween('date', [$from, $to]);
+            })->sum('qty');
+            $sold += $demand_sold;
+
             $ppu = $saleRate - $purchaseRate;
             $profit = $ppu * $sold;
             $stock = getStock($product->id);

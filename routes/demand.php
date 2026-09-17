@@ -10,5 +10,5 @@ Route::middleware('auth')->group(function () {
     Route::get('demand/delete/{id}', [DemandController::class, 'destroy'])->name('demand.delete')->middleware(ConfirmPassword::class);
     Route::get('demand/deliver/{demand}', [DemandController::class, 'deliverForm'])->name('demand.deliver');
     Route::post('demand/deliver/{demand}', [DemandController::class, 'deliverStore'])->name('demand.deliverStore');
-
+    Route::get('demand/delivery/delete/{id}', [DemandController::class, 'deleteDelivery'])->name('demand.delivery.delete')->middleware(ConfirmPassword::class);
 });
